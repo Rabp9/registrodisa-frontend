@@ -1,0 +1,31 @@
+<br>
+<h4 style="text-align: center;">REGISTRO DE CLETEROS RUTEROS</h4>
+<hr>
+<div class="alert alert-dismissible" ng-class="{'alert-success': message.code === 200, 'alert-danger': message.code !== 200 }" role="alert" ng-show="message.code !== undefined">
+    <button type="button" class="close" ng-click="message.code = undefined" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    {{ message.message }} 
+</div>
+<div ng-show="loading && !terminado">
+    <img class="img-responsive center-block" ng-src="images/loading.gif" alt="Cargando..." />
+</div>
+<form ng-hide="loading || terminado" novalidate angular-validator angular-validator-submit="saveRegistro(ciclista, 'btnSaveCiclista', fecha_nac_pre)" name="CiclistaAdd">
+    <div class="form-group">
+        <label for="txtAsunto">Asunto</label>
+        <input id="txtAsunto" class="form-control" type="text" ng-model="mensaje.asunto" pattern="[a-zA-Z áéíóúÁÉÍÓÚñÑ]+"
+            name="mensajeAsunto" required required-message="'Este campo es requerido'" 
+            invalid-message="'Sólo se admite letras'" validate-on="blur">
+    </div>
+    <div class="form-group">
+        <label for="txtaCuerpo">Mensaje</label>
+        <textarea id="txtaCuerpo" class="form-control" ng-model="mensaje.cuerpo" 
+            name="mensajeCuerpo" required ui-tinymce="tinymcePagesOptions">
+        </textarea>
+        <input style="display: none;" id="flImagen" type="file" class="form-control" ngf-select="upload($file, $invalidFiles)" 
+            accept="image/*" ngf-max-height="5000" ngf-max-size="10MB" name="imagen"/>
+    </div>
+    <div class="form-group">
+        <button id="btnSaveCiclista" type="submit" class="btn btn-primary pull-right"><span class="glyphicon glyphicon-ok"></span> Registrar</button>
+    </div>
+</form>
+<br>
+<br>

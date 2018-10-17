@@ -1,0 +1,140 @@
+<br>
+<img class="img-responsive center-block" ng-src="images/banner.png" alt="Banner">
+<h4 style="text-align: center;">REGISTRO DE CLETEROS RUTEROS</h4>
+<hr>
+<div class="alert alert-dismissible" ng-class="{'alert-success': message.code === 200, 'alert-danger': message.code !== 200 }" role="alert" ng-show="message.code !== undefined">
+    <button type="button" class="close" ng-click="message.code = undefined" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    {{ message.message }} 
+</div>
+<div ng-show="loading && !terminado">
+    <img class="img-responsive center-block" ng-src="images/loading.gif" alt="Cargando..." />
+</div>
+<form ng-hide="loading || terminado" novalidate angular-validator angular-validator-submit="saveRegistro(ciclista, 'btnSaveCiclista', fecha_nac_pre)" name="CiclistaAdd">
+    <p class="help-block">
+        Los campos (*) son obligatorios
+    </p>
+    <div class="form-group">
+        <label for="txtNombres">Nombres (*)</label>
+        <input id="txtNombres" class="form-control" type="text" ng-model="ciclista.nombres" pattern="[a-zA-Z áéíóúÁÉÍÓÚñÑ]+"
+            name="ciclistaNombres" required required-message="'Este campo es requerido'" 
+            invalid-message="'Sólo se admite letras'" validate-on="blur">
+    </div>
+    <div class="row">
+        <div class="form-group col-sm-6 col-xs-6">
+        <label for="txtApellidoPaterno">Apellido Paterno (*)</label>
+            <input id="txtApellidoPaterno" class="form-control" type="text" ng-model="ciclista.apellido_paterno" pattern="[a-zA-Z áéíóúÁÉÍÓÚñÑ]+"
+                name="ciclistaApellidoPaterno" required required-message="'Este campo es requerido'" 
+                invalid-message="'Sólo se admite letras'" validate-on="blur">
+        </div>
+        <div class="form-group col-sm-6 col-xs-6">
+        <label for="txtApellidoMaterno">Apellido Materno (*)</label>
+            <input id="txtApellidoMaterno" class="form-control" type="text" ng-model="ciclista.apellido_materno" pattern="[a-zA-Z áéíóúÁÉÍÓÚñÑ]+"
+                name="ciclistaApellidoMaterno" required required-message="'Este campo es requerido'" 
+                invalid-message="'Sólo se admite letras'"  validate-on="blur">
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-sm-6">
+            <label for="txtDni">DNI (*)</label>
+            <input id="txtDni" class="form-control" type="text" ng-model="ciclista.dni" pattern="[0-9]+" maxlength="8" minlength="8"
+                name="ciclistaDni" required required-message="'Este campo es requerido'" validate-on="blur" invalid-message="'Debe contener 8 digitos'">
+        </div>
+        <div class="form-group col-sm-6">
+            <label for="dtFechaNac">Fecha de Nacimiento</label>
+            <input id="dtFechaNac" class="form-control" type="date" ng-model="fecha_nac_pre" name="ciclistaFecha_nac">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="txtDireccion">Dirección</label>
+        <input id="txtDireccion" class="form-control" type="text" ng-model="ciclista.direccion" name="ciclistaDireccion">
+    </div>
+    <div class="row">
+        <div class="form-group col-sm-6 col-xs-6">
+            <label for="emEmail">Email</label>
+            <input id="emEmail" class="form-control" type="email" ng-model="ciclista.email" name="ciclistaEmail"
+                invalid-message="'Ejemplo: informes@trujillocletearrutear.com'" validate-on="blur">
+        </div>
+        <div class="form-group col-sm-6 col-xs-6">
+            <label for="tlCelular">Celular</label>
+            <input id="tlCelular" class="form-control" pattern="[0-9]+" validate-on="blur" invalid-message="'Debe contener números'"
+                type="tel" ng-model="ciclista.celular" name="ciclistaCelular" maxlength="9">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="chPertenecesGrupo">
+            <input id="chPertenecesGrupo" type="checkbox" ng-model="ciclista.perteneces_grupo" name="ciclistaPertenecesGrupo" 
+                ng-change="onChangePertenecesGrupo(ciclista.perteneces_grupo, ciclista)">
+            ¿Perteneces a algún grupo, colectivo o mancha?
+        </label>
+    </div>
+    <div class="form-group">
+        <label for="txtGrupo">Nombre del Grupo</label>
+        <input id="txtGrupo" class="form-control" type="text" ng-model="ciclista.grupo" 
+            ng-disabled="!ciclista.perteneces_grupo" name="ciclistaGrupo">
+    </div>
+    <div class="form-group">
+        <label for="txtHoras">¿Cuántas horas le dedicas a cletear a la semana? (*)</label>
+        <input id="txtHoras" class="form-control" type="number" ng-model="ciclista.horas" 
+            name="ciclistaHoras" min="0" required required-message="'Ingrese una cantidad'">
+    </div>
+    <h4>
+        ¿Qué tipo de ciclismo practicas?
+    </h4>
+    <div class="form-group">
+        <div class="row">
+            <div class="col-sm-4">
+                <h4>Competición</h4>
+                <div>
+                    <label><input type="checkbox" ng-model="ciclista.tipo1" name="ciclistaTipo1" /> Ciclismo en ruta</label>
+                </div>
+                <div>
+                    <label><input type="checkbox" ng-model="ciclista.tipo2" name="ciclistaTipo2" /> Ciclismo en pista</label>
+                </div>
+                <div>
+                    <label><input type="checkbox" ng-model="ciclista.tipo3" name="ciclistaTipo3"/> Ciclismo de montaña</label>
+                </div>
+                <div>
+                    <label><input type="checkbox" ng-model="ciclista.tipo4" name="ciclistaTipo4"/> Ciclocróss o bicicross</label>
+                </div>
+                <div>
+                    <label><input type="checkbox" ng-model="ciclista.tipo5" name="ciclistaTipo5"/> Trial</label>
+                </div>
+                <div>
+                    <label><input type="checkbox" ng-model="ciclista.tipo6" name="ciclistaTipo6" /> Ciclismo en sala</label>
+                </div>
+                <div>
+                    <label><input type="checkbox" ng-model="ciclista.tipo7" name="ciclistaTipo7" /> Ciclismo BMX</label>
+                </div>
+                <div>
+                    <label><input type="checkbox" ng-model="ciclista.tipo8" name="ciclistaTipo8" /> Freestyle</label>
+                </div>
+                <div>
+                    <input type="text" class="form-control" ng-model="ciclista.tipo9" name="ciclistaTipo9" placeholder="Otro" />
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <h4>Recreación</h4>
+                <div>
+                    <label><input type="checkbox" ng-model="ciclista.tipo10"  name="ciclistaTipo10"/> Cicloturismo</label>
+                </div>
+                <div>
+                    <input type="text" class="form-control" ng-model="ciclista.tipo11" placeholder="Otro" name="ciclistaTipo11" />
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <h4>Urbano</h4>
+                <div>
+                    <label><input type="checkbox" ng-model="ciclista.tipo12" name="ciclistaTipo12" /> Ciclismo urbano</label>
+                </div>
+                <div>
+                    <input type="text" class="form-control" ng-model="ciclista.tipo13" placeholder="Otro" name="ciclistaTipo13" />
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <button id="btnSaveCiclista" type="submit" class="btn btn-primary pull-right"><span class="glyphicon glyphicon-ok"></span> Registrar</button>
+    </div>
+</form>
+<br>
+<br>
