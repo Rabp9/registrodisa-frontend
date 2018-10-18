@@ -22,7 +22,7 @@ angular.module('registroDisaApp')
         ciclistasservice.get({
             text: $scope.search.text,
             items_per_page: $scope.items_per_page,
-            page:   $scope.page,
+            page:   $scope.page
             // estado_id: $scope.search.estado_id
         }, function (data) {
             $scope.ciclistas = data.ciclistas;
@@ -39,8 +39,8 @@ angular.module('registroDisaApp')
     $scope.getTotalRegistros = function() {
         ciclistasservice.getTotalRegistros(function(data) {
             $scope.total_registros = data.total_registros;
-        })
-    }
+        });
+    };
     
     $scope.$watch('search.estado_id', function(oldValue, newValue) {
         $scope.page = 1;

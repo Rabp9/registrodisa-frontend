@@ -262,7 +262,8 @@ module.exports = function (grunt) {
           '<%= yeoman.dist %>/scripts/{,*/}*.js',
           '<%= yeoman.dist %>/styles/{,*/}*.css',
           '<%= yeoman.dist %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}',
-          '<%= yeoman.dist %>/styles/fonts/*'
+          '<%= yeoman.dist %>/styles/fonts/*',
+          '!<%= yeoman.dist %>/scripts/langs_tinymce/es.js'
         ]
       }
     },
@@ -425,6 +426,18 @@ module.exports = function (grunt) {
           cwd: '.',
           src: 'bower_components/bootstrap-sass-official/assets/fonts/bootstrap/*',
           dest: '<%= yeoman.dist %>'
+        }, {
+          // tinymce
+          expand: true,
+          cwd: 'bower_components/tinymce/',
+          src: ['plugins/**', 'themes/**', 'skins/**'],
+          dest: '<%= yeoman.dist %>/scripts/'
+        }, {
+          // tinymce
+          expand: true,
+          cwd: '<%= yeoman.app %>/scripts/',
+          src: 'langs_tinymce/*',
+          dest: '<%= yeoman.dist %>/scripts/'
         }]
       },
       styles: {
