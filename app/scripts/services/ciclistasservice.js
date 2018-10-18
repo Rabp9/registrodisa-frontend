@@ -20,5 +20,9 @@ angular.module('registroDisaApp')
             transformRequest: angular.identity,
             headers: { 'Content-Type': undefined }
         },
+        send: {
+            method: 'POST',
+            url: EnvService.getHost() + 'ciclistas/send.json',
+        },
     });
 });

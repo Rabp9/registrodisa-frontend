@@ -13,7 +13,7 @@ angular.module('registroDisaApp')
         getHost: function() {
             switch (window.location.hostname) {
                 case 'localhost':
-                    return 'http://localhost:8000/registro-disa-backend/';
+                    return 'http://localhost:8000/registrodisa-backend/';
                 case 'www.trujillocletearrutear.com':
                     return 'http://trujillocletearrutear.com/registro/api/';
                 case 'trujillocletearrutear.com':

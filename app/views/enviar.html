@@ -8,7 +8,7 @@
 <div ng-show="loading && !terminado">
     <img class="img-responsive center-block" ng-src="images/loading.gif" alt="Cargando..." />
 </div>
-<form ng-hide="loading || terminado" novalidate angular-validator angular-validator-submit="saveRegistro(ciclista, 'btnSaveCiclista', fecha_nac_pre)" name="CiclistaAdd">
+<form ng-hide="loading || terminado" novalidate angular-validator angular-validator-submit="send(mensaje, 'btnSendMensaje')" name="MensajeSend">
     <div class="form-group">
         <label for="txtAsunto">Asunto</label>
         <input id="txtAsunto" class="form-control" type="text" ng-model="mensaje.asunto" pattern="[a-zA-Z áéíóúÁÉÍÓÚñÑ]+"
@@ -17,14 +17,14 @@
     </div>
     <div class="form-group">
         <label for="txtaCuerpo">Mensaje</label>
-        <textarea id="txtaCuerpo" class="form-control" ng-model="mensaje.cuerpo" 
+        <textarea id="txtaCuerpo" class="form-control" style="height: 250px;" ng-model="mensaje.cuerpo" 
             name="mensajeCuerpo" required ui-tinymce="tinymcePagesOptions">
         </textarea>
         <input style="display: none;" id="flImagen" type="file" class="form-control" ngf-select="upload($file, $invalidFiles)" 
             accept="image/*" ngf-max-height="5000" ngf-max-size="10MB" name="imagen"/>
     </div>
     <div class="form-group">
-        <button id="btnSaveCiclista" type="submit" class="btn btn-primary pull-right"><span class="glyphicon glyphicon-ok"></span> Registrar</button>
+        <button id="btnSendMensaje" type="submit" class="btn btn-primary pull-right"><span class="glyphicon glyphicon-send"></span> Enviar</button>
     </div>
 </form>
 <br>
