@@ -19,7 +19,8 @@ angular
     'angularValidator',
     'scrollable-table',
     'ui.bootstrap',
-    'ui.tinymce'
+    'ui.tinymce',
+    'ngFileUpload'
 ])
 .config(function($stateProvider, $urlRouterProvider) {
     var mainState = {
@@ -53,4 +54,8 @@ angular
     $stateProvider.state(listaCiclistasState);
     $stateProvider.state(enviarState);
     $urlRouterProvider.when('', '/');
+})
+.run(function($rootScope, $state, $cookies, $location, $window, EnvService) {
+    angular.module('registroDisaApp').pathLocation = EnvService.getHost();
+    $rootScope.pathLocation = EnvService.getHost();
 });

@@ -12,7 +12,7 @@ angular.module('registroDisaApp')
     return $resource(EnvService.getHost() + 'ciclistas/:id.json', {}, {
         getTotalRegistros: {
             method: 'GET',
-            url: EnvService.getHost() + 'ciclistas/getTotalRegistros.json',
+            url: EnvService.getHost() + 'ciclistas/getTotalRegistros.json'
         },
         upload: {
             method: 'POST',
@@ -22,7 +22,7 @@ angular.module('registroDisaApp')
         },
         send: {
             method: 'POST',
-            url: EnvService.getHost() + 'ciclistas/send.json',
+            url: EnvService.getHost() + 'ciclistas/send.json'
         },
     });
 });
