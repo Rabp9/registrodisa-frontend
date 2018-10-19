@@ -9,7 +9,7 @@
  */
 angular.module('registroDisaApp')
 .controller('EnviarCtrl', function ($scope, $utilsViewService, ciclistasservice, $rootScope) {
-    $scope.tmpPathPages = $rootScope.pathLocation + 'img' + '/mensajes/'; 
+    $scope.tmpPathPages = $rootScope.pathLocation + 'img' + '/mensajes/';
     $scope.loading = false;
     
     $scope.tinymcePagesOptions = {
@@ -25,13 +25,15 @@ angular.module('registroDisaApp')
     };
     
     $scope.send = function(mensaje, boton) {
-        $('#' + boton).text('Enviar...');
+        $('#' + boton + ' .btnText').text('Enviando...');
         $utilsViewService.disable('#' + boton);
         
         ciclistasservice.send(mensaje, function(data) {
             $utilsViewService.enable('#' + boton);
+            $('#' + boton + ' .btnText').text('Enviar');
         }, function (err) {
             $utilsViewService.enable('#' + boton);
+            $('#' + boton + ' .btnText').text('Enviar');
         });
     };
     
