@@ -11,7 +11,7 @@
 <form ng-hide="loading || terminado" novalidate angular-validator angular-validator-submit="send(mensaje, 'btnSendMensaje')" name="MensajeSend">
     <div class="form-group">
         <label for="txtAsunto">Asunto</label>
-        <input id="txtAsunto" class="form-control" type="text" ng-model="mensaje.asunto" pattern="[a-zA-Z áéíóúÁÉÍÓÚñÑ]+"
+        <input id="txtAsunto" class="form-control" type="text" ng-model="mensaje.asunto"
             name="mensajeAsunto" required required-message="'Este campo es requerido'" 
             invalid-message="'Sólo se admite letras'" validate-on="blur">
     </div>
