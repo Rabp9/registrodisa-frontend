@@ -29,8 +29,10 @@ angular.module('registroDisaApp')
         $utilsViewService.disable('#' + boton);
         
         ciclistasservice.send(mensaje, function(data) {
+            $scope.mensaje = {};
             $utilsViewService.enable('#' + boton);
             $('#' + boton + ' .btnText').text('Enviar');
+            $scope.message = data;
         }, function (err) {
             $utilsViewService.enable('#' + boton);
             $('#' + boton + ' .btnText').text('Enviar');
